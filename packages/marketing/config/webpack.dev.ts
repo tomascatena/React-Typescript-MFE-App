@@ -2,6 +2,7 @@ import { Configuration, container } from 'webpack';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import commonConfig from './webpack.common';
+const packageJSON = require('../package.json');
 
 const ModuleFederationPlugin = container.ModuleFederationPlugin;
 
@@ -20,6 +21,10 @@ const devConfig: Configuration = {
       filename: 'remoteEntry.js',
       exposes: {
         './MountMarketingApp': './src/mount',
+      },
+      shared: {
+        ...packageJSON.dependencies,
+        ...packageJSON.devDependencies,
       },
     }),
     new HtmlWebpackPlugin({
