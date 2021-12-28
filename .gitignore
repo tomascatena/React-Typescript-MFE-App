@@ -2,3 +2,11 @@
 /packages/container/node_modules
 /packages/dashboard/node_modules
 /packages/marketing/node_modules
+
+/packages/auth/dist
+/packages/container/dist
+/packages/dashboard/dist
+/packages/marketing/dist
+
+/node_modules
+/dist
