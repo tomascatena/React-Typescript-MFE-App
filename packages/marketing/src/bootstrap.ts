@@ -1,4 +1,3 @@
-import React from 'react';
 import mount from './mount';
 
 if (process.env.NODE_ENV === 'development') {
