@@ -1,13 +1,26 @@
-import { Configuration } from 'webpack';
+import { Configuration, container } from 'webpack';
 import { merge } from 'webpack-merge';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import commonConfig from './webpack.common';
+const packageJSON = require('../package.json');
+
+const ModuleFederationPlugin = container.ModuleFederationPlugin;
 
 const prodConfig: Configuration = {
   mode: 'production',
+  output: {
+    filename: '[name].[contenthash].js',
+  },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
+    new ModuleFederationPlugin({
+      name: 'marketing',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './MountMarketingApp': './src/mount',
+      },
+      shared: {
+        ...packageJSON.dependencies,
+        ...packageJSON.devDependencies,
+      },
     }),
   ],
 };
