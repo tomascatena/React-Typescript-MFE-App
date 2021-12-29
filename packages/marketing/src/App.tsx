@@ -1,13 +1,17 @@
 import React, { FC } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { StylesProvider } from '@material-ui/core';
+import { StylesProvider, createGenerateClassName } from '@material-ui/core';
 import Pricing from './components/Pricing';
 import Album from './components/Landing';
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: 'ma',
+});
 
 const App: FC = () => {
   return (
     <BrowserRouter>
-      <StylesProvider>
+      <StylesProvider generateClassName={generateClassName}>
         <Routes>
           <Route path='/' element={<Album />} />
 
