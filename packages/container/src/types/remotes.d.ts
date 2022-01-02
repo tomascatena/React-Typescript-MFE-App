@@ -4,3 +4,9 @@ declare module 'marketingApp/MountMarketingApp' {
     marketingOptions: MarketingOptions
   ): MountReturn;
 }
+declare module 'authApp/MountAuthApp' {
+  export default function mount(
+    el: Element,
+    authOptions: AuthOptions
+  ): MountReturn;
+}

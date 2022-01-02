@@ -91,7 +91,7 @@ const Header: FC<Props> = ({ signedIn, onSignOut }) => {
             variant='outlined'
             className={classes.link}
             component={RouterLink}
-            to={signedIn ? '/' : '/auth/signin'}
+            to={signedIn ? '/' : '/auth/login'}
             onClick={onClick}
           >
             {signedIn ? 'Logout' : 'Login'}

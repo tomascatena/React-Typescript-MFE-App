@@ -3,21 +3,24 @@ import { merge } from 'webpack-merge';
 import commonConfig from './webpack.common';
 const packageJSON = require('../package.json');
 
-const domain = process.env.PRODUCTION_DOMAIN;
-
 const ModuleFederationPlugin = container.ModuleFederationPlugin;
 
-const prodConfig: Configuration = {
-  mode: 'production',
-  output: {
-    filename: '[name].[contenthash].js',
+const devConfig: Configuration = {
+  mode: 'development',
+  devtool: 'source-map',
+  devServer: {
+    port: 8082,
+    hot: true,
+    historyApiFallback: {
+      disableDotRule: true,
+    },
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'container',
-      remotes: {
-        marketingApp: `marketing@${domain}/marketing/remoteEntry.js`,
-        authApp: `auth@${domain}/auth/remoteEntry.js`,
+      name: 'auth',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './MountAuthApp': './src/mount',
       },
       shared: {
         ...packageJSON.dependencies,
@@ -27,4 +30,4 @@ const prodConfig: Configuration = {
   ],
 };
 
-export default merge(commonConfig, prodConfig);
+export default merge(commonConfig, devConfig);
