@@ -7,15 +7,20 @@ const packageJSON = require('../package.json');
 
 const ModuleFederationPlugin = container.ModuleFederationPlugin;
 
+const PORT = 8080;
+
 const devConfig: Configuration = {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
-    port: 8080,
+    port: PORT,
     hot: true,
     historyApiFallback: {
       disableDotRule: true,
     },
+  },
+  output: {
+    publicPath: `http://localhost:${PORT}/`,
   },
   plugins: [
     new ReactRefreshPlugin(),
