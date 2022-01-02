@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core';
 import Pricing from './components/Pricing';
 import Album from './components/Landing';
-import { MemoryHistory } from 'history';
+import { MemoryHistory, BrowserHistory } from 'history';
 import CustomRouter from './components/routing/CustomRouter';
 
 const generateClassName = createGenerateClassName({
@@ -11,7 +11,7 @@ const generateClassName = createGenerateClassName({
 });
 
 interface Props {
-  history: MemoryHistory;
+  history: MemoryHistory | BrowserHistory;
 }
 
 const App: FC<Props> = ({ history }) => {

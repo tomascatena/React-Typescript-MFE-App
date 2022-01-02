@@ -1,11 +1,11 @@
 import React, { FC, useState, useLayoutEffect } from 'react';
 import { Router } from 'react-router-dom';
-import { MemoryHistory, Location } from 'history';
+import { MemoryHistory, BrowserHistory } from 'history';
 
 interface Props {
   basename?: string;
   children: React.ReactNode;
-  history: MemoryHistory;
+  history: MemoryHistory | BrowserHistory;
 }
 
 const CustomRouter: FC<Props> = ({ basename = '/', children, history }) => {

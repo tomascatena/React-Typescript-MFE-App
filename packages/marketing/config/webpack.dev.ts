@@ -10,8 +10,9 @@ const devConfig: Configuration = {
   devtool: 'source-map',
   devServer: {
     port: 8081,
+    hot: true,
     historyApiFallback: {
-      index: 'index.html',
+      disableDotRule: true,
     },
   },
   plugins: [

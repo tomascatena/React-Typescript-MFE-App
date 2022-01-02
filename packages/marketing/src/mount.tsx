@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { createMemoryHistory, Location, Update } from 'history';
+import { BrowserHistory } from 'history';
+import {
+  createMemoryHistory,
+  createBrowserHistory,
+  Location,
+  Update,
+} from 'history';
 
 interface MountReturn {
   onParentNavigate: (update: Update) => void;
 }
 
 interface MarketingOptions {
-  onNavigate: (location: Location) => void;
+  onNavigate?: (location: Location) => void;
+  defaultHistory?: BrowserHistory;
 }
 
 const defaultMarketingOptions: MarketingOptions = {
@@ -19,15 +26,19 @@ const mount = (
   el: Element,
   marketingOptions: MarketingOptions = defaultMarketingOptions
 ): MountReturn => {
-  const history = createMemoryHistory({
-    initialEntries: [{ pathname: window.location.pathname }],
-  });
+  const { onNavigate, defaultHistory } = marketingOptions;
 
-  const { onNavigate } = marketingOptions;
+  const history = defaultHistory
+    ? defaultHistory
+    : createMemoryHistory({
+        initialEntries: [{ pathname: window.location.pathname }],
+      });
 
-  history.listen(({ location }) => {
-    onNavigate(location);
-  });
+  if (onNavigate) {
+    history.listen(({ location }) => {
+      onNavigate(location);
+    });
+  }
 
   ReactDOM.render(<App history={history} />, el);
 
