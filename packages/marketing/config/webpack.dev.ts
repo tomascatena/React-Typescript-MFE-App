@@ -5,15 +5,20 @@ const packageJSON = require('../package.json');
 
 const ModuleFederationPlugin = container.ModuleFederationPlugin;
 
+const PORT = 8081;
+
 const devConfig: Configuration = {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
-    port: 8081,
+    port: PORT,
     hot: true,
     historyApiFallback: {
       disableDotRule: true,
     },
+  },
+  output: {
+    publicPath: `http://localhost:${PORT}/`,
   },
   plugins: [
     new ModuleFederationPlugin({

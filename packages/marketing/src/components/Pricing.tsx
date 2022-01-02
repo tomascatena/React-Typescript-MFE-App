@@ -212,7 +212,7 @@ const Pricing: FC = () => {
                 <CardActions>
                   <Button
                     component={RouterLink}
-                    to='/auth/signup'
+                    to='/auth/register'
                     fullWidth
                     color='primary'
                   >

@@ -13,9 +13,7 @@ interface AuthOptions {
   defaultHistory?: BrowserHistory;
 }
 
-const defaultAuthOptions: AuthOptions = {
-  onNavigate: () => {},
-};
+const defaultAuthOptions: AuthOptions = {};
 
 const mount = (
   el: Element,

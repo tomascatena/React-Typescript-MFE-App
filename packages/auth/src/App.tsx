@@ -19,9 +19,17 @@ const App: FC<Props> = ({ history }) => {
     <StylesProvider generateClassName={generateClassName}>
       <CustomRouter history={history}>
         <Routes>
-          <Route path='/auth/register' element={<Register />} />
+          <Route
+            path='/auth/register'
+            element={
+              <Register onSignIn={() => console.log('Registering...')} />
+            }
+          />
 
-          <Route path='/auth/login' element={<Login />} />
+          <Route
+            path='/auth/login'
+            element={<Login onSignIn={() => console.log('Logging in...')} />}
+          />
         </Routes>
       </CustomRouter>
     </StylesProvider>

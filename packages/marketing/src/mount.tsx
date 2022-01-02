@@ -2,12 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserHistory } from 'history';
-import {
-  createMemoryHistory,
-  createBrowserHistory,
-  Location,
-  Update,
-} from 'history';
+import { createMemoryHistory, Location, Update } from 'history';
 
 interface MountReturn {
   onParentNavigate: (update: Update) => void;
@@ -18,9 +13,7 @@ interface MarketingOptions {
   defaultHistory?: BrowserHistory;
 }
 
-const defaultMarketingOptions: MarketingOptions = {
-  onNavigate: () => {},
-};
+const defaultMarketingOptions: MarketingOptions = {};
 
 const mount = (
   el: Element,
