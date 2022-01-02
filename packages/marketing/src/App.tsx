@@ -1,24 +1,30 @@
 import React, { FC } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core';
 import Pricing from './components/Pricing';
 import Album from './components/Landing';
+import { MemoryHistory } from 'history';
+import CustomRouter from './components/routing/CustomRouter';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'ma',
 });
 
-const App: FC = () => {
+interface Props {
+  history: MemoryHistory;
+}
+
+const App: FC<Props> = ({ history }) => {
   return (
-    <BrowserRouter>
-      <StylesProvider generateClassName={generateClassName}>
+    <StylesProvider generateClassName={generateClassName}>
+      <CustomRouter history={history}>
         <Routes>
           <Route path='/' element={<Album />} />
 
           <Route path='/pricing' element={<Pricing />} />
         </Routes>
-      </StylesProvider>
-    </BrowserRouter>
+      </CustomRouter>
+    </StylesProvider>
   );
 };
 

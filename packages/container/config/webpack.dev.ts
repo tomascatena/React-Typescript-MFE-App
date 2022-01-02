@@ -1,6 +1,8 @@
 import { Configuration, container } from 'webpack';
 import { merge } from 'webpack-merge';
 import commonConfig from './webpack.common';
+import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+
 const packageJSON = require('../package.json');
 
 const ModuleFederationPlugin = container.ModuleFederationPlugin;
@@ -10,11 +12,13 @@ const devConfig: Configuration = {
   devtool: 'source-map',
   devServer: {
     port: 8080,
+    hot: true,
     historyApiFallback: {
-      index: 'index.html',
+      disableDotRule: true,
     },
   },
   plugins: [
+    new ReactRefreshPlugin(),
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {

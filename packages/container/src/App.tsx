@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Header from './components/Header';
 import MarketingApp from './components/MarketingApp';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { StylesProvider, createGenerateClassName } from '@material-ui/core';
+import CustomBrowserRouter from './components/routing/CustomBrowserRouter';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'cont',
@@ -10,13 +10,13 @@ const generateClassName = createGenerateClassName({
 
 const App: FC = () => {
   return (
-    <BrowserRouter>
-      <StylesProvider generateClassName={generateClassName}>
+    <StylesProvider generateClassName={generateClassName}>
+      <CustomBrowserRouter>
         <Header signedIn={false} onSignOut={() => {}} />
 
         <MarketingApp />
-      </StylesProvider>
-    </BrowserRouter>
+      </CustomBrowserRouter>
+    </StylesProvider>
   );
 };
 
