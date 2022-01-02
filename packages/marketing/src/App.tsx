@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { StylesProvider, createGenerateClassName } from '@material-ui/core';
+import {
+  StylesProvider,
+  createGenerateClassName,
+  CssBaseline,
+} from '@material-ui/core';
 import Pricing from './components/Pricing';
 import Album from './components/Landing';
 import { MemoryHistory, BrowserHistory } from 'history';
@@ -17,6 +21,8 @@ interface Props {
 const App: FC<Props> = ({ history }) => {
   return (
     <StylesProvider generateClassName={generateClassName}>
+      <CssBaseline />
+
       <CustomRouter history={history}>
         <Routes>
           <Route path='/' element={<Album />} />

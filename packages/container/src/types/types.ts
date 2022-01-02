@@ -6,6 +6,7 @@ export interface MarketingOptions {
 
 export interface AuthOptions {
   onNavigate: (location: Location) => void;
+  initialPath: string;
 }
 
 export interface MountReturn {

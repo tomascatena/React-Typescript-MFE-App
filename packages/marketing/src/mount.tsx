@@ -11,6 +11,7 @@ interface MountReturn {
 interface MarketingOptions {
   onNavigate?: (location: Location) => void;
   defaultHistory?: BrowserHistory;
+  initialPath?: string;
 }
 
 const defaultMarketingOptions: MarketingOptions = {};
@@ -19,12 +20,12 @@ const mount = (
   el: Element,
   marketingOptions: MarketingOptions = defaultMarketingOptions
 ): MountReturn => {
-  const { onNavigate, defaultHistory } = marketingOptions;
+  const { onNavigate, defaultHistory, initialPath } = marketingOptions;
 
   const history = defaultHistory
     ? defaultHistory
     : createMemoryHistory({
-        initialEntries: [{ pathname: window.location.pathname }],
+        initialEntries: [initialPath ? initialPath : window.location.pathname],
       });
 
   if (onNavigate) {

@@ -11,6 +11,7 @@ const AuthApp: FC = () => {
 
   useEffect(() => {
     const { onParentNavigate } = mountAuthApp(ref.current!, {
+      initialPath: history.location.pathname,
       onNavigate: (location: Location) => {
         navigate(location.pathname);
       },

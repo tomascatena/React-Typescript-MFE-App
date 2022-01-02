@@ -11,6 +11,7 @@ interface MountReturn {
 interface AuthOptions {
   onNavigate?: (location: Location) => void;
   defaultHistory?: BrowserHistory;
+  initialPath?: string;
 }
 
 const defaultAuthOptions: AuthOptions = {};
@@ -19,12 +20,12 @@ const mount = (
   el: Element,
   authOptions: AuthOptions = defaultAuthOptions
 ): MountReturn => {
-  const { onNavigate, defaultHistory } = authOptions;
+  const { onNavigate, defaultHistory, initialPath } = authOptions;
 
   const history = defaultHistory
     ? defaultHistory
     : createMemoryHistory({
-        initialEntries: [{ pathname: window.location.pathname }],
+        initialEntries: [initialPath ? initialPath : window.location.pathname],
       });
 
   if (onNavigate) {

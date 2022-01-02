@@ -11,6 +11,7 @@ const MarketingApp: FC = () => {
 
   useEffect(() => {
     const { onParentNavigate } = mountMarketingApp(ref.current!, {
+      initialPath: history.location.pathname,
       onNavigate: (location: Location) => {
         navigate(location.pathname);
       },
